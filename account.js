@@ -6,6 +6,10 @@ class Account {
   get balance() {
     return `$${this._balance.toFixed(2)}`;
   }
+
+  deposit(amount) {
+    this._balance += amount;
+  }
 }
 
 module.exports = Account;
