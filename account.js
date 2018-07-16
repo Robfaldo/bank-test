@@ -14,6 +14,10 @@ class Account {
   withdraw(amount) {
     this._balance -= amount;
   }
+
+  printStatement() {
+    return "date || credit || debit || balance"
+  }
 }
 
 module.exports = Account;
