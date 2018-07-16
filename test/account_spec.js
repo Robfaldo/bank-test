@@ -50,5 +50,19 @@ describe('Account', () => {
         assert.equal(result, expectedResult);
       });
     });
+    describe('when transactions have been completed', () => {
+      it('returns 1 transaction along with header', () => {
+        const expectedResult = [
+          "date || credit || debit || balance",
+          "16/07/2017 || || 300.00 || 300.00",
+          ]
+        const account = new Account();
+        account.deposit(100);
+
+        const result = account.printStatement();
+
+        assert.equal(result, expectedResult);
+      });
+    });
   });
 });
