@@ -24,4 +24,17 @@ describe('Account', () => {
       assert.strictEqual(result, expectedResult)
     });
   });
+
+  describe('.withdraw', () => {
+    it('removes the withdraw amount from balance', () => {
+      const expectedResult = "$200.00";
+      const account = new Account();
+      account.deposit(500);
+
+      account.withdraw(300);
+      const result = account.balance;
+
+      assert.strictEqual(result, expectedResult);
+    });
+  });
 });
