@@ -1,8 +1,10 @@
 const assert = require('assert');
 const Account = require('../account.js')
+const Printer = require('../printer.js')
+const sinon = require('sinon');
+
 
 describe('Account', () => {
-
   describe('.balance', () => {
     it('starts with a balance of $0.00', () => {
       const expectedResult = "$0.00"
@@ -13,7 +15,6 @@ describe('Account', () => {
       assert.equal(result, expectedResult)
     });
   });
-
   describe('.deposit', () => {
     it('adds the deposit amount to balance', () => {
       const expectedResult = "$100.00";
@@ -25,7 +26,6 @@ describe('Account', () => {
       assert.strictEqual(result, expectedResult)
     });
   });
-
   describe('.withdraw', () => {
     it('removes the withdraw amount from balance', () => {
       const expectedResult = "$200.00";
@@ -38,7 +38,6 @@ describe('Account', () => {
       assert.strictEqual(result, expectedResult);
     });
   });
-
   describe('.printStatement()', () => {
     describe('when no transactions', () => {
       it('returns just the header', () => {
@@ -52,14 +51,17 @@ describe('Account', () => {
     });
     describe('when transactions have been completed', () => {
       it('returns 1 deposit transaction along with header', () => {
+        var stub = sinon.stub(Printer.prototype, "format").returns("16/07/2018 || 300.00 || || 300.00");
         const expectedResult = [
           "date || credit || debit || balance",
           "16/07/2018 || 300.00 || || 300.00",
           ]
+
         const account = new Account();
         account.deposit(300);
 
         const result = account.printStatement();
+        stub.restore();
 
         assert.deepEqual(result, expectedResult);
       });
