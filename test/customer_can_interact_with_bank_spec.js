@@ -2,8 +2,8 @@ const assert = require('assert');
 const Account = require('../account.js')
 const sinon = require('sinon');
 
-describe('Customer can interact with bank', () => {
-  describe('Successfully', () => {
+describe('Feature', () => {
+  describe('after multiple transactions', () => {
     it('prints the customers correct statement', () => {
       expectedResult = [
         "date || credit || debit || balance",

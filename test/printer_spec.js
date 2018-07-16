@@ -1,25 +1,55 @@
 const assert = require('assert');
-const Formatter = require('../formatter.js')
+const sinon = require('sinon');
+const Printer = require('../printer.js')
 
-describe('Formatter', () => {
-  describe('.format', () => {
-    it('returns a formatted string with deposit transaction', () => {
-      const expectedResult = "16/07/2018 || 300.00 || || 500.00";
-      const formatter = new Formatter();
-      const input = { date: "16/07/2018", deposit: 300, withdraw: 0, balance: 500 }
+describe('Printer', () => {
+  describe('.print', () => {
+    describe('when no transactions', () => {
+      it('returns just the header', () => {
+        const expectedResult = ["date || credit || debit || balance"];
+        const printer = new Printer();
 
-      const result = formatter.format(input);
+        const result = printer.print([]);
 
-      assert.equal(result, expectedResult)
+        assert.deepEqual(result, expectedResult);
+      });
     });
-    it('returns a formatted string with withdraw transaction', () => {
-      const expectedResult = "16/07/2018 || || 300.00 || 0.00";
-      const formatter = new Formatter();
-      const input = { date: "16/07/2018", deposit: 0, withdraw: 300, balance: 0.00 }
+    describe('when transactions have been completed', () => {
+      it('returns 1 transaction along with header', () => {
+        const expectedResult = [
+          "date || credit || debit || balance",
+          "16/07/2018 || 300.00 || || 300.00",
+          ]
 
-      const result = formatter.format(input);
+        const printer = new Printer();
 
-      assert.equal(result, expectedResult)
+        const result = printer.print(
+          [
+            "16/07/2018 || 300.00 || || 300.00",
+          ]
+        );
+
+        assert.deepEqual(result, expectedResult);
+      });
+      it('returns multiple transactions along with header', () => {
+        const expectedResult = [
+          "date || credit || debit || balance",
+          "16/07/2018 || || 600.00 || 500.00",
+          "16/07/2018 || 100.00 || || 1100.00",
+          "16/07/2018 || 1000.00 || || 1000.00"
+          ]
+        const printer = new Printer();
+
+        const result = printer.print(
+          [
+            "16/07/2018 || 1000.00 || || 1000.00",
+            "16/07/2018 || 100.00 || || 1100.00",
+            "16/07/2018 || || 600.00 || 500.00"
+          ]
+        );
+
+        assert.deepEqual(result, expectedResult);
+      });
     });
   });
 });

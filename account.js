@@ -1,9 +1,11 @@
 const dateFormat = require('dateformat');
-const Printer = require('./formatter.js')
+const Formatter = require('./formatter.js');
+const Printer = require('./printer.js');
 
 class Account {
-  constructor(printer = Printer) {
-    this._printer = new printer();
+  constructor(formatter = Formatter, printer = Printer) {
+    this._formatter = new formatter();
+    this._printer = new Printer();
     this._balance = 0;
     this._transactionsHistory = [];
   }
@@ -14,7 +16,7 @@ class Account {
 
   deposit(amount) {
     this._balance += amount;
-    var transactionLine = this._printer.format(
+    var transactionLine = this._formatter.format(
       {
         date: dateFormat(new Date(), "dd/mm/yyyy"),
         deposit: amount,
@@ -27,7 +29,7 @@ class Account {
 
   withdraw(amount) {
     this._balance -= amount;
-    var transactionLine = this._printer.format(
+    var transactionLine = this._formatter.format(
       {
         date: dateFormat(new Date(), "dd/mm/yyyy"),
         deposit: 0,
@@ -39,12 +41,7 @@ class Account {
   }
 
   printStatement() {
-    var statement = [];
-    this._transactionsHistory.forEach(function(transaction){
-      statement.unshift(transaction);
-    });
-    statement.unshift("date || credit || debit || balance");
-    return statement;
+    return this._printer.print(this._transactionsHistory);
   }
 }
 
