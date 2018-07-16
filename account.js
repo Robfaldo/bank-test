@@ -1,5 +1,5 @@
 const dateFormat = require('dateformat');
-const Printer = require('./printer.js')
+const Printer = require('./formatter.js')
 
 class Account {
   constructor(printer = Printer) {

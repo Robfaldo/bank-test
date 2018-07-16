@@ -1,8 +1,7 @@
 const assert = require('assert');
 const Account = require('../account.js')
-const Printer = require('../printer.js')
+const Formatter = require('../formatter.js')
 const sinon = require('sinon');
-
 
 describe('Account', () => {
   describe('.balance', () => {
@@ -51,7 +50,7 @@ describe('Account', () => {
     });
     describe('when transactions have been completed', () => {
       it('returns 1 transaction along with header', () => {
-        var stub = sinon.stub(Printer.prototype, "format").returns("16/07/2018 || 300.00 || || 300.00");
+        var stub = sinon.stub(Formatter.prototype, "format").returns("16/07/2018 || 300.00 || || 300.00");
         const expectedResult = [
           "date || credit || debit || balance",
           "16/07/2018 || 300.00 || || 300.00",
@@ -66,7 +65,7 @@ describe('Account', () => {
         assert.deepEqual(result, expectedResult);
       });
       it('returns multiple transactions along with header', () => {
-        var stub = sinon.stub(Printer.prototype, "format")
+        var stub = sinon.stub(Formatter.prototype, "format")
         stub.onCall(0).returns("16/07/2018 || 1000.00 || || 1000.00")
         stub.onCall(1).returns("16/07/2018 || 100.00 || || 1100.00")
         stub.onCall(2).returns("16/07/2018 || || 600.00 || 500.00")

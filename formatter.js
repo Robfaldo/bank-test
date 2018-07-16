@@ -1,4 +1,4 @@
-class Printer {
+class Formatter {
   format(lineData) {
     var deposit = lineData.deposit.toFixed(2);
     var withdraw = lineData.withdraw.toFixed(2);
@@ -14,4 +14,4 @@ class Printer {
   }
 }
 
-module.exports = Printer;
+module.exports = Formatter;
