@@ -17,15 +17,13 @@ describe('Customer can interact with bank', () => {
       ]
 
       account = new Account();
-      console.log("HERE");
-      console.log(account);
       account.deposit(1000);
       account.deposit(2000);
       account.withdraw(500);
 
       result = account.printStatement()
 
-      assert.equal(result, expectedResult)
+      assert.deepEqual(result, expectedResult)
     });
   });
 });

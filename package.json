@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "dateformat": "^3.0.3",
     "eslint": "^5.1.0",
     "eslint-config-google": "^0.9.1",
     "mocha": "^5.2.0"
