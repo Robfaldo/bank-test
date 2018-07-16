@@ -1,4 +1,7 @@
 const assert = require('assert');
+const Account = require('../account.js')
+
+
 
 describe('Customer can interact with bank', () => {
   describe('Successfully', () => {
@@ -14,6 +17,8 @@ describe('Customer can interact with bank', () => {
       ]
 
       account = new Account();
+      console.log("HERE");
+      console.log(account);
       account.deposit(1000);
       account.deposit(2000);
       account.withdraw(500);
