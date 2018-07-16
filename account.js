@@ -27,7 +27,14 @@ class Account {
 
   withdraw(amount) {
     this._balance -= amount;
-    var transactionLine = `${dateFormat(new Date(), "dd/mm/yyyy")} || || ${amount.toFixed(2)} || ${this._balance.toFixed(2)}`
+    var transactionLine = this._printer.format(
+      {
+        date: dateFormat(new Date(), "dd/mm/yyyy"),
+        deposit: amount,
+        withdraw: 0,
+        balance: this._balance
+      }
+    )
     this._transactionsHistory.push(transactionLine)
   }
 

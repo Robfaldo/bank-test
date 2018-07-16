@@ -12,5 +12,14 @@ describe('Printer', () => {
 
       assert.equal(result, expectedResult)
     });
+    it('returns a formatted string with withdraw transaction', () => {
+      const expectedResult = "16/07/2018 || || 300.00 || 0.00";
+      const printer = new Printer();
+      const input = { date: "16/07/2018", deposit: 0, withdraw: 300, balance: 0.00 }
+
+      const result = printer.format(input);
+
+      assert.equal(result, expectedResult)
+    });
   });
 });
