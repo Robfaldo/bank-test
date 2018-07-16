@@ -30,8 +30,8 @@ class Account {
     var transactionLine = this._printer.format(
       {
         date: dateFormat(new Date(), "dd/mm/yyyy"),
-        deposit: amount,
-        withdraw: 0,
+        deposit: 0,
+        withdraw: amount,
         balance: this._balance
       }
     )
@@ -39,10 +39,11 @@ class Account {
   }
 
   printStatement() {
-    var statement = ["date || credit || debit || balance"];
+    var statement = [];
     this._transactionsHistory.forEach(function(transaction){
-      statement.push(transaction);
+      statement.unshift(transaction);
     });
+    statement.unshift("date || credit || debit || balance");
     return statement;
   }
 }
