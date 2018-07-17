@@ -45,6 +45,16 @@ describe('Account', () => {
 
       assert.strictEqual(result, expectedResult)
     })
+    it('throws error when withraw is empty', () => {
+      const account = new Account()
+
+      assert.throws(
+        () => {
+          account.withdraw()
+        },
+        Error('Withdraw amount cannot be empty')
+      )
+    })
   })
   describe('.printStatement', () => {
     it('Calls the Printers print method', () => {

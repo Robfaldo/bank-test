@@ -31,6 +31,9 @@ class Account {
   }
 
   withdraw (amount) {
+    if (amount === undefined) {
+      throw new Error('Withdraw amount cannot be empty')
+    }
     this._balance -= amount
     var transactionLine = this._formatter.format(
       {
