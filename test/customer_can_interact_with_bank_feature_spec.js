@@ -11,7 +11,7 @@ describe('Feature', () => {
         "13/01/2012 || 2000.00 || || 3000.00",
         "10/01/2012 || 1000.00 || || 1000.00"
       ]
-      account = new Account();
+      var account = new Account();
       var stub = sinon.useFakeTimers(+new Date(2012,00,10));
       account.deposit(1000);
       var stub = sinon.useFakeTimers(+new Date(2012,00,13));
