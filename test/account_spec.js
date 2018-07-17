@@ -23,6 +23,16 @@ describe('Account', () => {
 
       assert.strictEqual(result, expectedResult)
     })
+    it('throws error when deposit is empty', () => {
+      const account = new Account()
+
+      assert.throws(
+        () => {
+          account.deposit()
+        },
+        Error('Deposit amount cannot be empty')
+      )
+    })
   })
   describe('.withdraw', () => {
     it('removes the withdraw amount from balance', () => {

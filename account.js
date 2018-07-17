@@ -15,6 +15,9 @@ class Account {
   }
 
   deposit (amount) {
+    if (amount === undefined) {
+      throw new Error('Deposit amount cannot be empty')
+    }
     this._balance += amount
     var transactionLine = this._formatter.format(
       {
