@@ -94,3 +94,11 @@ I need to be able to print my account statement.
 6. Refactor
 7. Repeat 4-6 until feature test passing (Feature - Green)
 8. Refactor
+
+Design:
+
+In my diagram, before coding, I had a Customer, Account and Printer class. When I wrote my feature test, I felt that I didn't need a customer class to match the specification & requirements (although obviously this would be needed in a real life situation).
+
+As part of my refactoring, I took 2 big responsibilities out of my Account class - the responsibility of formatting transactions into the string that is stored in transaction history and the responsibility of combining all the transactions with a header (printing).
+
+I was comfortable that Account had the responsibility of withdrawing, depositing and returning (printing) the final statement.
