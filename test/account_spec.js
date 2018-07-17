@@ -1,6 +1,7 @@
 const assert = require('assert');
-const Account = require('../account.js')
+const Account = require('../account.js');
 const sinon = require('sinon');
+const Printer = require('../printer.js');
 
 describe('Account', () => {
   describe('.balance', () => {
@@ -34,6 +35,16 @@ describe('Account', () => {
       const result = account.balance;
 
       assert.strictEqual(result, expectedResult);
+    });
+  });
+  describe('.printStatement', () => {
+    it('Calls the Printers print method', () => {
+      const printerSpy = { print: sinon.spy() }
+      const account = new Account(printerSpy);
+
+      const result = account.printStatement();
+
+      assert.ok(printerSpy.print.calledOnce);
     });
   });
 });

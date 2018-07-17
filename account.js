@@ -3,9 +3,9 @@ const Formatter = require('./formatter.js');
 const Printer = require('./printer.js');
 
 class Account {
-  constructor(formatter = Formatter, printer = Printer) {
-    this._formatter = new formatter();
-    this._printer = new Printer();
+  constructor(printer = new Printer(), formatter = new Formatter()) {
+    this._formatter = formatter;
+    this._printer = printer;
     this._balance = 0;
     this._transactionsHistory = [];
   }
