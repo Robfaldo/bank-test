@@ -15,9 +15,7 @@ class Account {
   }
 
   deposit (amount) {
-    if (amount === undefined) {
-      throw new Error('Deposit amount cannot be empty')
-    }
+    this.throwErrorIfEmpty(amount, "Deposit")
     this._balance += amount
     var transactionLine = this._formatter.format(
       {
@@ -31,9 +29,7 @@ class Account {
   }
 
   withdraw (amount) {
-    if (amount === undefined) {
-      throw new Error('Withdraw amount cannot be empty')
-    }
+    this.throwErrorIfEmpty(amount, "Withdraw")
     this._balance -= amount
     var transactionLine = this._formatter.format(
       {
@@ -48,6 +44,12 @@ class Account {
 
   printStatement () {
     return this._printer.print(this._transactionsHistory)
+  }
+
+  throwErrorIfEmpty(amount, transactionType) {
+    if (amount === undefined) {
+      throw new Error(`${transactionType} amount cannot be empty`)
+    }
   }
 }
 
