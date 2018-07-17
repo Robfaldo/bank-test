@@ -12,6 +12,10 @@ class Formatter {
     }
     return formattedLine
   }
+
+  singleIntegerToDollars(amount) {
+    return `$${amount.toFixed(2)}`
+  }
 }
 
 module.exports = Formatter

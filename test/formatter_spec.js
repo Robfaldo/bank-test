@@ -22,4 +22,15 @@ describe('Formatter', () => {
       assert.equal(result, expectedResult)
     })
   })
+  describe('.singleIntegerToDollars', () => {
+    it('returns the integer to two decimal places with a $', () => {
+      //setup
+      const expectedResult = '$100.00'
+      const formatter = new Formatter()
+      //exercise
+      const result = formatter.singleIntegerToDollars(100)
+      //verify
+      assert.strictEqual(result, expectedResult)
+    })
+  })
 })

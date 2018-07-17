@@ -11,7 +11,7 @@ class Account {
   }
 
   get balance () {
-    return `$${this._balance.toFixed(2)}`
+    return this._formatter.singleIntegerToDollars(this._balance)
   }
 
   deposit (amount) {
