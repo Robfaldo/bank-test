@@ -39,7 +39,7 @@ class Account {
   }
 
   createTransactionLine (amount) {
-    var transactionLine = this._formatter.format(
+    var transactionLine = this._formatter.transactionLine(
       {
         date: dateFormat(new Date(), 'dd/mm/yyyy'),
         deposit: amount.depositAmount,

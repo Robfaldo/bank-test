@@ -1,5 +1,5 @@
 class Formatter {
-  format (lineData) {
+  transactionLine (lineData) {
     var deposit = lineData.deposit.toFixed(2)
     var withdraw = lineData.withdraw.toFixed(2)
     var balance = lineData.balance.toFixed(2)
